@@ -1,0 +1,7 @@
+Order refused
+Order processed by:Marko
+Order date:2023-08-28T21:05:16.389579823
+Company name:Lanaco
+
+Products:
+Nutella 5.0 6.0

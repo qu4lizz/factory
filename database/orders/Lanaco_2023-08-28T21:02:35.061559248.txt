@@ -1,0 +1,8 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-08-28T21:02:35.061559248
+Company name:Lanaco
+
+Products:
+Snikers 5.0 1.5
+Milka 5.0 2.0

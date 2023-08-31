@@ -1,0 +1,7 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-08-31T23:15:12.982357222
+Company name:Xiaomi
+
+Products:
+Keks 25.0 3.0

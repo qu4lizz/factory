@@ -1,0 +1,7 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-08-31T23:02:13.288184583
+Company name:Xiaomi
+
+Products:
+Nutella 15.0 6.0

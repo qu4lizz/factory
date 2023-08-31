@@ -1,0 +1,9 @@
+Order refused
+Order processed by:Marko
+Order date:2023-08-31T23:15:25.603879476
+Company name:Xiaomi
+
+Products:
+Milka 5.0 2.0
+Nutella 5.0 6.0
+Snikers 5.0 1.5
