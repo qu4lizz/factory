@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="qu4lizz.distributorapp.gui.DistributorController">
+   <children>
+      <Label fx:id="companyName" alignment="CENTER" prefHeight="47.0" prefWidth="800.0" text="Label" AnchorPane.bottomAnchor="553.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TableView fx:id="table" layoutX="153.0" layoutY="50.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="tableNameColumn" prefWidth="289.23792457580566" text="Name" />
+          <TableColumn fx:id="tableQuantityColumn" prefWidth="190.4981689453125" text="Quantity" />
+            <TableColumn fx:id="tablePriceColumn" prefWidth="185.51123046875" text="Price" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="500.0" layoutY="50.0" prefHeight="520.0" prefWidth="300.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <AnchorPane prefHeight="353.0" prefWidth="300.0" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="69.0" layoutY="14.0" prefHeight="34.0" prefWidth="300.0" text="Name" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+                  <TextField fx:id="nameTextField" layoutX="42.0" layoutY="50.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="41.779271402684344" />
+                  <TextField fx:id="quantityTextField" layoutX="42.0" layoutY="141.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="41.779271402684344" />
+                  <Label alignment="CENTER" layoutY="99.0" prefHeight="41.0" prefWidth="175.0" text="Quantity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" layoutX="62.0" layoutY="190.0" prefHeight="41.0" prefWidth="175.0" text="Price" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TextField fx:id="priceTextField" layoutX="41.0" layoutY="232.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="42.779271402684344" />
+                  <Button layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#addOnMouseClicked" prefHeight="41.0" prefWidth="103.0" text="Add" />
+               </children>
+            </AnchorPane>
+            <Button layoutX="98.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#deleteOnMouseClicked" prefHeight="41.0" prefWidth="103.0" text="Delete" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

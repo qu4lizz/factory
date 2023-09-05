@@ -7,12 +7,13 @@ import javafx.stage.Stage;
 import qu4lizz.distributorapp.gui.PopUpController;
 import qu4lizz.distributorapp.utils.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
 public class Application extends javafx.application.Application {
-    public static String fxmlPath = "fxml/";
-    public static String iconPath = "icon/";
+    public static String fxmlPath = "fxml" + File.separator;
+    public static String iconPath = "icon" + File.separator;
     public static Image icon;
     public static Stage mainStage;
     @Override

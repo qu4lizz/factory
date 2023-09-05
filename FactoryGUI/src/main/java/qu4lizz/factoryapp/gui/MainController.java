@@ -66,6 +66,8 @@ public class MainController implements Initializable {
     private Button blockButton;
     @FXML
     private Button unblockButton;
+    @FXML
+    private Button deleteButton;
 
     // products pane
     @FXML
@@ -154,6 +156,7 @@ public class MainController implements Initializable {
                 refuseButton.setVisible(false);
                 blockButton.setVisible(true);
                 unblockButton.setVisible(true);
+                deleteButton.setVisible(true);
                 List<User> users = userService.getUsers().stream().filter(User::isActivated).toList();
                 usersTable.getItems().clear();
                 usersTable.getItems().addAll(users);
@@ -162,6 +165,7 @@ public class MainController implements Initializable {
                 refuseButton.setVisible(true);
                 blockButton.setVisible(false);
                 unblockButton.setVisible(false);
+                deleteButton.setVisible(false);
                 List<User> users = userService.getUsers().stream().filter(x -> !x.isActivated()).toList();
                 usersTable.getItems().clear();
                 usersTable.getItems().addAll(users);
@@ -279,6 +283,18 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    void deleteUserOnMouseClicked(MouseEvent event) {
+        User user = usersTable.getSelectionModel().getSelectedItem();
+
+        if (user == null) {
+            PopUpController.showStage("Error", "No user selected");
+            return;
+        }
+        userService.delete(user.getUsername());
+        refreshUserTable();
+    }
+
+    @FXML
     void refuseOnMouseClicked(MouseEvent event) {
         User user = usersTable.getSelectionModel().getSelectedItem();
 
@@ -351,16 +367,19 @@ public class MainController implements Initializable {
 
     @FXML
     void createOrderOnMouseClicked(MouseEvent event) {
-        List<RawMaterial> materials = orderTable.getSelectionModel().getSelectedItems();
-
+        List<RawMaterial> materials = orderTable.getItems();
+        System.out.println(materials);
         if (materials == null) {
             PopUpController.showStage("Error", "No products selected");
             return;
         }
 
         try {
-            for(var material : materials)
-                distributorService.buyRawMaterial(material.getId(), material.getQuantity());
+            for(var material : materials) {
+                System.out.println(material);
+                boolean bought = distributorService.buyRawMaterial(material.getId(), material.getQuantity());
+                PopUpController.showStage("Info", bought ? "Ordered " : "Couldn't order " + material.getName());
+            }
         }
         catch (RemoteException e) {
             Logger.logger.log(Level.SEVERE, e.getMessage());
@@ -368,6 +387,7 @@ public class MainController implements Initializable {
     }
 
     private void fromOrderToStock(RawMaterial item) {
+        System.out.println("os:" + item.getId() + " " + item.getName());
         RawMaterial stockItem = stockTable.getItems().stream().filter(i -> i.getId() == item.getId()).findFirst().get();
         stockItem.setQuantity(stockItem.getQuantity() + item.getQuantity());
         stockTable.refresh();
@@ -376,13 +396,21 @@ public class MainController implements Initializable {
     }
 
     void fromStockToOrder(RawMaterial orderItem) {
+        System.out.println("so:" + orderItem.getId() + " " + orderItem.getName());
+        RawMaterial stockItem = stockTable.getItems().stream().filter(i -> i.getId() == orderItem.getId()).findFirst().get();
+        if (stockItem.getQuantity() < orderItem.getQuantity()) {
+            PopUpController.showStage("Error", "Too much quantity");
+            return;
+        }
+
+
         if (orderTable.getItems().contains(orderItem)) {
             RawMaterial item = orderTable.getItems().stream().filter(i -> i.getId() == orderItem.getId()).findFirst().get();
             item.setQuantity(item.getQuantity() + orderItem.getQuantity());
         } else {
             orderTable.getItems().add(orderItem);
         }
-        RawMaterial stockItem = stockTable.getItems().stream().filter(i -> i.getId() == orderItem.getId()).findFirst().get();
+
         stockItem.setQuantity(stockItem.getQuantity() - orderItem.getQuantity());
 
         orderTable.refresh();

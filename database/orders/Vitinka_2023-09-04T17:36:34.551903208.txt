@@ -1,0 +1,8 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-09-04T17:36:34.551903208
+Company name:Vitinka
+
+Products:
+Nutella 15.0 6.0
+Milka 11.0 2.0

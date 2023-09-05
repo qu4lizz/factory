@@ -14,8 +14,8 @@ import java.util.logging.Level;
 
 public class Application extends javafx.application.Application {
     public static Stage mainStage;
-    public static String fxmlPath = "fxml/";
-    public static String iconPath = "icon/";
+    public static String fxmlPath = "fxml" + File.separator;
+    public static String iconPath = "icon" + File.separator;
     public static Image icon;
 
     @Override

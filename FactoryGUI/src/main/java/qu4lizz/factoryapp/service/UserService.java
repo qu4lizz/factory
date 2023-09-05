@@ -99,4 +99,23 @@ public class UserService {
 
         return false;
     }
+
+    public boolean delete(String username) {
+        List<User> users = userDAO.getUsers();
+        User toDelete = null;
+
+        for (var user : users) {
+            if (user.getUsername().equals(username)) {
+                toDelete = user;
+                break;
+            }
+        }
+        if (toDelete != null) {
+            users.remove(toDelete);
+            userDAO.saveUsers(users);
+            return true;
+        }
+
+        return false;
+    }
 }

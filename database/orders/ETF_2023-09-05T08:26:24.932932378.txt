@@ -1,0 +1,8 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-09-05T08:26:24.932932378
+Company name:ETF
+
+Products:
+Keks 15.0 3.0
+Snikers 10.0 1.5

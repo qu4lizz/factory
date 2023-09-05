@@ -6,9 +6,11 @@ import qu4lizz.factoryrest.model.FactoryUser;
 import java.util.List;
 
 public class FactoryUserService {
-    private FactoryUserDAO factoryUserDAO = new FactoryUserDAO();
+    private final FactoryUserDAO factoryUserDAO;
 
-    public FactoryUserService() { }
+    public FactoryUserService() {
+        factoryUserDAO = new FactoryUserDAO();
+    }
 
     public List<FactoryUser> getFactoryUsers() {
         return factoryUserDAO.getUsers();

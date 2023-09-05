@@ -3,13 +3,14 @@ package qu4lizz.factoryordersapp.utils;
 
 import qu4lizz.factoryordersapp.Application;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigUtil {
-    public static String CONFIG_FOLDER = "config/";
+    public static String CONFIG_FOLDER = "config" + File.separator;
     private static final String CONFIG_FILE_PATH = CONFIG_FOLDER + "config.properties";
     private static Properties properties;
 

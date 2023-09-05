@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 public class ConfigUtil {
-    public static String CONFIG_FOLDER = "config/";
+    public static String CONFIG_FOLDER = "config" + File.separator;
     private static final String CONFIG_FILE_PATH = CONFIG_FOLDER + "config.properties";
     private static Properties properties;
 

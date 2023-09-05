@@ -59,7 +59,10 @@ public class NewProductController implements Initializable {
             if (name.isBlank() || price < 0 || quantity < 0)
                 throw new IllegalArgumentException();
 
-            candy = new Candy(name, price, quantity);
+            if (candy == null)
+                candy = new Candy(name, price, quantity);
+            else
+                candy = new Candy(candy.getId(), name, price, quantity);
 
             stage.close();
         }
@@ -73,7 +76,7 @@ public class NewProductController implements Initializable {
         return candy;
     }
 
-    public static NewProductController showStage(Candy candy) {
+    public static NewProductController showStage(Candy candyArg) {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(Application.fxmlPath + "new_product_controller.fxml"));
 
         stage = new Stage();
@@ -85,11 +88,13 @@ public class NewProductController implements Initializable {
             throw new RuntimeException(e);
         }
         NewProductController controller = fxmlLoader.getController();
-        if (candy != null) {
-            controller.nameTextField.setText(candy.getName());
-            controller.priceTextField.setText(String.valueOf(candy.getPrice()));
-            controller.quantityTextField.setText(String.valueOf(candy.getQuantity()));
-            stage.setTitle("Edit " + candy.getName());
+        if (candyArg != null) {
+            controller.candy = candyArg;
+            controller.typeChoiceBox.setValue("Candy");
+            controller.nameTextField.setText(candyArg.getName());
+            controller.priceTextField.setText(String.valueOf(candyArg.getPrice()));
+            controller.quantityTextField.setText(String.valueOf(candyArg.getQuantity()));
+            stage.setTitle("Edit " + candyArg.getName());
             controller.createButton.setText("Edit");
         }
         else {

@@ -104,7 +104,7 @@ public class LoginController implements Initializable {
         try {
             boolean valid = userService.login(new LoginDTO(username, password));
             if (!valid) {
-                PopUpController.showStage("Error", "Invalid username or password");
+                PopUpController.showStage("Error", "Invalid login");
                 return;
             }
             user = userService.getUser(username);

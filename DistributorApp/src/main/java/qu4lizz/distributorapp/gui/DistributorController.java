@@ -57,7 +57,6 @@ public class DistributorController implements Initializable {
         tablePriceColumn.setCellValueFactory(cellData -> Bindings.createObjectBinding(() -> cellData.getValue().getPrice()));
 
         companyName.setText(CompanyNameController.companyName);
-
         registerDistributor();
     }
 
@@ -74,13 +73,12 @@ public class DistributorController implements Initializable {
             RawMaterial existingMaterial = table.getItems().stream().filter(x -> x.getName().equals(name)).findFirst().orElse(null);
             if (existingMaterial == null) {
                 RawMaterial newMaterial = new RawMaterial(name, quantity, price);
-                table.getItems().add(newMaterial);
+                server.addMaterial(newMaterial);
             }
             else {
                 existingMaterial.setQuantity(existingMaterial.getQuantity() + quantity);
             }
             table.refresh();
-            server.setRawMaterials(table.getItems());
 
             nameTextField.clear();
             priceTextField.clear();
@@ -100,9 +98,8 @@ public class DistributorController implements Initializable {
             PopUpController.showStage("Error", "No row selected");
             return;
         }
-        table.getItems().remove(item);
+        server.removeMaterial(item);
         table.refresh();
-        server.setRawMaterials(table.getItems());
     }
 
     private void registerDistributor() {
@@ -119,7 +116,8 @@ public class DistributorController implements Initializable {
         }
 
         try {
-            server = new DistributorServer(table.getItems());
+            server = new DistributorServer();
+            table.setItems(server.getList());
             DistributorInterface stub = (DistributorInterface) UnicastRemoteObject.exportObject(server, 0);
             Registry registry = LocateRegistry.getRegistry(port);
             registry.rebind(companyName.getText(), stub);

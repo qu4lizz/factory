@@ -1,0 +1,8 @@
+Order refused
+Order processed by:Marko
+Order date:2023-09-04T17:36:44.382002081
+Company name:Vitinka
+
+Products:
+Keks 20.0 3.0
+Snikers 15.0 1.5

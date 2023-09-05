@@ -1,0 +1,8 @@
+Order refused
+Order processed by:Marko
+Order date:2023-09-05T08:26:32.040126489
+Company name:ETF
+
+Products:
+Nutella 11.0 6.0
+Milka 25.0 2.0

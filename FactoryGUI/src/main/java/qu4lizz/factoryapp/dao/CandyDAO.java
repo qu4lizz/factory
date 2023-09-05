@@ -28,7 +28,7 @@ public class CandyDAO {
     }
 
     public Candy getCandyById(int productId) {
-        String key = "product:" + productId;
+        String key = KEY + productId;
         try (Jedis jedis = jedisPool.getResource()) {
             Map<String, String> objectMap = jedis.hgetAll(key);
 
@@ -45,13 +45,13 @@ public class CandyDAO {
     }
 
     public void updateCandy(Candy product) {
-        String key = "product:" + product.getId();
+        String key = KEY + product.getId();
         Jedis jedis = jedisPool.getResource();
         jedis.hmset(key, product.toMap());
     }
 
     public boolean deleteCandy(int productId) {
-        String key = "product:" + productId;
+        String key = KEY + productId;
         Jedis jedis = jedisPool.getResource();
         return jedis.del(key) == 1;
     }
@@ -60,12 +60,10 @@ public class CandyDAO {
         try (Jedis jedis = jedisPool.getResource()) {
             var keys = jedis.keys(KEY + "*");
 
-            int maxId = keys.stream()
+            return keys.stream()
                     .mapToInt(key -> Integer.parseInt(key.substring(KEY.length())))
                     .max()
                     .orElse(0);
-
-            return maxId;
         }
     }
 }

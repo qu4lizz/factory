@@ -14,6 +14,7 @@ public class RawMaterial implements Serializable  {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        id = nextId++;
     }
 
     public RawMaterial(int id, String name, double quantity, double price) {
@@ -47,5 +48,13 @@ public class RawMaterial implements Serializable  {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof RawMaterial) {
+            RawMaterial item = (RawMaterial) obj;
+            return item.getId() == this.id;
+        }
+        return false;
     }
 }

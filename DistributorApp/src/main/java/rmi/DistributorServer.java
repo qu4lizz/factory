@@ -1,25 +1,37 @@
 package rmi;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DistributorServer implements DistributorInterface {
     private ObservableList<RawMaterial> rawMaterials;
     private final Object lock = new Object();
 
-    public DistributorServer(ObservableList<RawMaterial> list) {
-        rawMaterials = list;
+    public DistributorServer() {
+        rawMaterials = FXCollections.observableArrayList();
     }
 
-    public void setRawMaterials(ObservableList<RawMaterial> rawMaterials) {
-        this.rawMaterials = rawMaterials;
+    public ObservableList<RawMaterial> getList() {
+        return rawMaterials;
+    }
+
+    public void addMaterial(RawMaterial mat) {
+        rawMaterials.add(mat);
+    }
+
+    public void removeMaterial(RawMaterial mat) {
+        rawMaterials.remove(mat);
     }
 
     @Override
     public List<RawMaterial> getRawMaterials() throws RemoteException {
-        //synchronized (lock) { //TODO: remove sync and check
         return rawMaterials.stream().toList();
     }
 
@@ -32,6 +44,6 @@ public class DistributorServer implements DistributorInterface {
 
         target.setQuantity(target.getQuantity() - quantity);
 
-        return false;
+        return true;
     }
 }

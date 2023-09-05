@@ -37,7 +37,7 @@ public class SingleOrderController {
 
             if (quantity <= 0) throw new NumberFormatException();
 
-            RawMaterial candy = new RawMaterial(item.getId(), item.getName(), item.getPrice(), quantity);
+            RawMaterial candy = new RawMaterial(item.getId(), item.getName(), quantity, item.getPrice());
             candyController.fromStockToOrder(candy);
             stage.close();
         } catch (NumberFormatException e) {

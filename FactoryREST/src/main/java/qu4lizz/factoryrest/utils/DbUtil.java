@@ -7,6 +7,6 @@ public class DbUtil {
     public static final String DATABASE_FOLDER;
 
     static {
-        DATABASE_FOLDER = new File(ROOT_FOLDER).getParentFile().getParentFile() + "/database/";
+        DATABASE_FOLDER = new File(ROOT_FOLDER).getParentFile().getParentFile() + File.separator + "database" + File.separator;
     }
 }
