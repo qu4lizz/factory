@@ -37,3 +37,5 @@ build/
 *.zip
 *.tar.gz
 *.rar
+
+apache-tomcat-10.1.10

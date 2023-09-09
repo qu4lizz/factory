@@ -1,0 +1,8 @@
+Order accepted
+Order processed by:Marko
+Order date:2023-09-05T10:03:01.386903576
+Company name:ETF
+
+Products:
+Nutella 22.0 6.0
+Milka 11.0 2.0
